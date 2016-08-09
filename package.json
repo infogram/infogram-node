@@ -1,0 +1,17 @@
+{
+  "name": "infogram-node",
+  "version": "0.0.1",
+  "homepage": "https://github.com/infogram/infogram-node",
+  "description": "A Node.js wrapper for Infogram API",
+  "main": "./src/server.js",
+  "author": "Maksim Berjoza",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/infogram/infogram-node.git"
+  },
+  "dependencies": {
+    "superagent": "^2.0.0",
+    "underscore": "~1.7.0"
+  }
+}

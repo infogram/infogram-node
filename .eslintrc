@@ -1,0 +1,10 @@
+{
+    "extends": "standard",
+    "globals": {
+      "describe": true,
+      "it": true
+    },
+    "rules": {
+      "semi": [2, "always"]
+    }
+}

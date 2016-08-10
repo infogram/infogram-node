@@ -21,3 +21,7 @@ infogramapi.getLibrary().then(function(data) {
   console.error(err);
 });
 ```
+
+## Eslint 
+    
+    ./node_modules/.bin/eslint src/*

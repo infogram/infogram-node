@@ -1,9 +1,6 @@
 var InfogramAPI = require('../');
 
-var infogram = new InfogramAPI({
-  apiKey: 'xxx',
-  apiSecret: 'xxx'
-});
+var infogram = new InfogramAPI('xxx', 'xxx');
 
 var project_id = 'projectid';
 

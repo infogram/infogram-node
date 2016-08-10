@@ -3,36 +3,39 @@ var crypto = require('crypto');
 var _ = require('underscore');
 var superagent = require('superagent');
 
-function InfogramApi (credentials = {}) {
+function InfogramApi (apiKey, apiSecret) {
   this.base = url.parse('https://infogr.am/service/v1');
-  this.apiKey = credentials.apiKey;
-  this.apiSecret = credentials.apiSecret;
+  if (!apiKey || !apiSecret) {
+     throw new Error('Please provide two arguments: apiKey and apiSecret');
+  }
+  this.apiKey = apiKey;
+  this.apiSecret = apiSecret;
 }
 
 InfogramApi.prototype = {
-  get: function (path, params, callback) {
+  get: function (path, params) {
     var method = superagent.get;
-    return this.call(method, path, params, callback);
+    return this.call(method, path, params);
   },
 
-  post: function (path, params, callback) {
+  post: function (path, params) {
     var method = superagent.post;
     params['content'] = JSON.stringify(params['content']);
-    return this.call(method, path, params, callback);
+    return this.call(method, path, params);
   },
 
-  put: function (path, params, callback) {
+  put: function (path, params) {
     var method = superagent.put;
     params['content'] = JSON.stringify(params['content']);
-    return this.call(method, path, params, callback);
+    return this.call(method, path, params);
   },
 
-  delete: function (path, params, callback) {
+  delete: function (path, params) {
     var method = superagent.delete;
-    return this.call(method, path, params, callback);
+    return this.call(method, path, params);
   },
 
-  call: function (method, path, params, callback) {
+  call: function (method, path, params) {
     var basePath = this.base.pathname;
     if (_.last(basePath) !== '/' && _.last(path) !== '/') {
       basePath += '/';
@@ -54,13 +57,12 @@ InfogramApi.prototype = {
     var baseString = signatureBaseString.call(this, requestOptions, requestParams);
 
     var signingKey = percentEncode(this.apiSecret);
-    var hmac = crypto.createHmac('sha1', signingKey);
 
     return new Promise(function (resolve, reject) {
+      var hmac = crypto.createHmac('sha1', signingKey);
       hmac.end(baseString, 'UTF-8', function makeRequest (error) {
         if (error) {
           reject(error);
-          callback(error);
           return;
         }
 

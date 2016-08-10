@@ -59,6 +59,7 @@ InfogramApi.prototype = {
     return new Promise(function (resolve, reject) {
       hmac.end(baseString, 'UTF-8', function makeRequest (error) {
         if (error) {
+          reject(error);
           callback(error);
           return;
         }
@@ -100,8 +101,6 @@ InfogramApi._addMethods = function (methods) {
   }
 };
 
-module.exports = InfogramApi;
-
 function signatureBaseString (requestOptions, params) {
   var components = [];
   components.push(requestOptions.method);
@@ -140,3 +139,5 @@ function buildQueryString (params) {
 
   return query;
 }
+
+module.exports = InfogramApi;

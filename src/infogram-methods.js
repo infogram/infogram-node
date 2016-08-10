@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   createProject: function (params) {
     return this.post('infographics', params);

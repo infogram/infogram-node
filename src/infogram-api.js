@@ -6,7 +6,7 @@ var superagent = require('superagent');
 function InfogramApi (apiKey, apiSecret) {
   this.base = url.parse('https://infogr.am/service/v1');
   if (!apiKey || !apiSecret) {
-     throw new Error('Please provide two arguments: apiKey and apiSecret');
+    throw new Error('Please provide two arguments: apiKey and apiSecret');
   }
   this.apiKey = apiKey;
   this.apiSecret = apiSecret;

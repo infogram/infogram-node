@@ -10,21 +10,14 @@ Infogram API Node
 ```javascript
 var InfogramAPI = require('infogram');
 
-var infogramapi = new InfogramAPI({
-  apiKey: 'xxx',
-  apiSecret: 'xxx'
-});
+var infogram = new InfogramAPI('apiKey', 'apiSecret');
 
-infogramapi.getLibrary().then(function(data) {
+infogram.getLibrary().then(function(data) {
   console.log(data);
 }, function(err) {
   console.error(err);
 });
 ```
-
-## Eslint 
-    
-    ./node_modules/.bin/eslint src/*
 
 ## License
 

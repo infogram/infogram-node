@@ -1,5 +1,5 @@
 {
-  "name": "infogram-node",
+  "name": "infogram",
   "version": "0.0.1",
   "homepage": "https://github.com/infogram/infogram-node",
   "description": "A Node.js wrapper for Infogram API",

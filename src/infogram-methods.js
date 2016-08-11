@@ -11,8 +11,8 @@ module.exports = {
     return this.get('infographics/' + id, params);
   },
 
-  deleteProject: function (id, params = {}) {
-    return this.delete('infographics/' + id, params);
+  deleteProject: function (id) {
+    return this.delete('infographics/' + id);
   },
 
   getLibrary: function () {

@@ -69,6 +69,18 @@ infogram.createProject(params).then(function(data) {
 //   console.error(err);
 // });
 
+// infogram.getProject(project_id, { format: 'png' }).then(function(data) {
+//   fs.writeFile('test.png', data, function(err) {
+//     if(err) {
+//       return console.log(err);
+//     }
+
+//     console.log('The file was saved!');
+//   });
+// }, function(err) {
+//   console.error(err);
+// });
+
 // infogram.deleteProject(project_id).then(function(data) {
 //   console.log(data);
 // }, function(err) {

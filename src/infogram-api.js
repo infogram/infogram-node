@@ -47,6 +47,8 @@ InfogramApi.prototype = {
       api_key: this.apiKey
     });
 
+    requestParams.format = requestParams.format || 'json';
+
     var requestOptions = {
       hostname: this.base.hostname,
       port: this.base.port,
@@ -69,25 +71,21 @@ InfogramApi.prototype = {
         requestParams['api_sig'] = hmac.read().toString('base64');
 
         if (req.method === 'GET' || req.method === 'DELETE') {
-          req.send(requestParams);
+          req.query(requestParams);
         } else {
           req.type('form');
           req.send(requestParams);
         }
 
-        if (requestParams.query) {
-          req.query(requestParams.query);
+        if (requestParams.format !== 'json') {
+          req.parse(binaryParser);
         }
 
-        if (requestParams.headers) {
-          req.set(requestParams.headers);
-        }
-
-        req.end(function (err, response) {
+        req.end(function (err, res) {
           if (err) {
             reject(err);
           } else {
-            resolve(response.body);
+            resolve(res.body);
           }
         });
       });
@@ -122,6 +120,17 @@ function signatureBaseString (requestOptions, params) {
 function percentEncode (input) {
   return encodeURIComponent(input).replace(/[!'()*]/g, function (c) {
     return '%' + c.charCodeAt(0).toString(16);
+  });
+}
+
+function binaryParser (res, callback) {
+  res.setEncoding('binary');
+  res.data = '';
+  res.on('data', function (chunk) {
+    res.data += chunk;
+  });
+  res.on('end', function () {
+    callback(null, new Buffer(res.data, 'binary'));
   });
 }
 

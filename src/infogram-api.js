@@ -41,13 +41,14 @@ InfogramApi.prototype = {
       basePath += '/';
     }
 
-    var req = method('https://' + this.base.hostname + basePath + path);
-
     var requestParams = _.extend(_.clone(params), {
       api_key: this.apiKey
     });
 
     requestParams.format = requestParams.format || 'json';
+    var req = method('https://' + this.base.hostname + basePath + path)
+      .accept(requestParams.format)
+      .type(requestParams.format);
 
     var requestOptions = {
       hostname: this.base.hostname,

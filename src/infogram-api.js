@@ -79,7 +79,7 @@ InfogramApi.prototype = {
         }
 
         if (requestParams.format !== 'json') {
-          req.parse(binaryParser);
+          req.buffer(true).parse(binaryParser);
         }
 
         req.end(function (err, res) {

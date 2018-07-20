@@ -1,6 +1,6 @@
 var url = require('url');
 var crypto = require('crypto');
-var _ = require('underscore');
+var _ = require('lodash');
 var superagent = require('superagent');
 
 function InfogramApi (apiKey, apiSecret) {

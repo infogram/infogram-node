@@ -41,13 +41,14 @@ InfogramApi.prototype = {
       basePath += '/';
     }
 
-    var req = method('https://' + this.base.hostname + basePath + path);
-
     var requestParams = _.extend(_.clone(params), {
       api_key: this.apiKey
     });
 
     requestParams.format = requestParams.format || 'json';
+    var req = method('https://' + this.base.hostname + basePath + path)
+      .accept(requestParams.format)
+      .type(requestParams.format);
 
     var requestOptions = {
       hostname: this.base.hostname,
@@ -78,7 +79,7 @@ InfogramApi.prototype = {
         }
 
         if (requestParams.format !== 'json') {
-          req.parse(binaryParser);
+          req.buffer(true).parse(binaryParser);
         }
 
         req.end(function (err, res) {
@@ -130,7 +131,7 @@ function binaryParser (res, callback) {
     res.data += chunk;
   });
   res.on('end', function () {
-    callback(null, new Buffer(res.data, 'binary'));
+    callback(null, Buffer.from(res.data, 'binary'));
   });
 }
 

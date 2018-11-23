@@ -4,7 +4,7 @@ var _ = require('lodash');
 var superagent = require('superagent');
 
 function InfogramApi (apiKey, apiSecret) {
-  this.base = url.parse('https://infogr.am/service/v1');
+  this.base = url.parse('https://infogram.com/service/v1');
   if (!apiKey || !apiSecret) {
     throw new Error('Please provide two arguments: apiKey and apiSecret');
   }
@@ -46,7 +46,7 @@ InfogramApi.prototype = {
     });
 
     requestParams.format = requestParams.format || 'json';
-    var req = method('https://' + this.base.hostname + basePath + path)
+    var req = method(this.base.protocol + '//' + this.base.host + basePath + path)
       .accept(requestParams.format)
       .type(requestParams.format);
 

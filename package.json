@@ -1,6 +1,6 @@
 {
   "name": "infogram",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "homepage": "https://github.com/infogram/infogram-node",
   "description": "A Node.js wrapper for Infogram API",
   "main": "./src/server.js",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "superagent": "4.0.0",
-    "lodash": "4.17.11"
+    "lodash": "4.17.14"
   },
   "devDependencies": {
     "eslint": "5.9.0"
